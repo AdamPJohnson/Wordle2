@@ -121,11 +121,13 @@
 }
 
 .perfect {
-  color: green;
+  background-color: green;
+  color: white;
 }
 
 .semi {
-  color: orange;
+  background-color: orange;
+  color: white;
 }
 
 #input {
