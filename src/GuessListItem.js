@@ -1,17 +1,11 @@
 import React from "react";
-
+import Tile from "./Tile";
 function GuessListItem({ guess }) {
-  return (
-    <div className="guessListItem">
-      <p className="guessListItemText">
-        <span className={`${guess.evaluation[0]}`}>{guess.guessWord[0]} </span>
-        <span className={`${guess.evaluation[1]}`}>{guess.guessWord[1]} </span>
-        <span className={`${guess.evaluation[2]}`}>{guess.guessWord[2]} </span>
-        <span className={`${guess.evaluation[3]}`}>{guess.guessWord[3]} </span>
-        <span className={`${guess.evaluation[4]}`}>{guess.guessWord[4]} </span>
-      </p>
-    </div>
-  );
+  const characters = guess.guessWord.split("");
+  const tiles = characters.map((char, i) => {
+    return <Tile className={`${guess.evaluation[i]}`} char={char} />;
+  });
+  return <div className="guessListItem">{tiles}</div>;
 }
 
 export default GuessListItem;

@@ -109,7 +109,7 @@
   height: 12%;
 
   margin: 0.5em;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   position: relative;
 }
@@ -161,6 +161,18 @@
   top: 3%;
   right: 5%;
 }
-g #inputLabel {
+#inputLabel {
   font-size: 0.8em;
+}
+
+.tile {
+  width: 2em;
+  height: 2em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  margin: 0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
