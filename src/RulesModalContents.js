@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-function ModalContents({ setModalIsOpen }) {
+function RulesModalContents({ setRulesModalIsOpen }) {
   return (
     <div id="modalContents">
       <Button
-        onClick={() => setModalIsOpen(false)}
+        onClick={() => setRulesModalIsOpen(false)}
         variant="outline-dark"
         size="sm"
         id="closeModalButton"
@@ -31,4 +31,4 @@ function ModalContents({ setModalIsOpen }) {
   );
 }
 
-export default ModalContents;
+export default RulesModalContents;

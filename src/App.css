@@ -16,6 +16,10 @@
     border: none;
     box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.2);
   }
+
+  #lettersList {
+    width: 30%;
+  }
 }
 @media screen and (max-width: 600px) {
   #board {
@@ -30,6 +34,9 @@
   }
   #guesses {
     height: 70%;
+  }
+  #lettersList {
+    width: 100%;
   }
 }
 
@@ -51,11 +58,18 @@
   position: relative;
 }
 
-#infoButton {
+#rulesButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   right: 2%;
+}
+
+#lettersButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 2%;
 }
 .App-header > * {
   margin: 0px;
@@ -133,6 +147,10 @@
   background-color: orange;
   color: white;
 }
+.guessed {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: whitesmoke;
+}
 
 #input {
   border-radius: 5px;
@@ -181,4 +199,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+#lettersList {
+  height: 40%;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.large {
+  width: 3em;
+  height: 3em;
 }

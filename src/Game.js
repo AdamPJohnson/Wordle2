@@ -4,36 +4,54 @@ import Board from "./Board";
 import Button from "react-bootstrap/Button";
 import GuessListItem from "./GuessListItem";
 import list from "./listOfWords";
+
 const fiveLetters = list.filter((word) => word.length === 5);
-function evaluateGuess(guess, target) {
-  let targetArray = target.split("");
-  let result = {};
-  for (let i = 0; i < targetArray.length; i++) {
-    if (targetArray[i] === guess[i]) {
-      result[i] = "perfect";
-      targetArray[i] = "*";
-    } else result[i] = "wrong";
-  }
-  for (let i = 0; i < targetArray.length; i++) {
-    if (
-      targetArray.includes(guess[i]) &&
-      targetArray[i] !== guess[i] &&
-      targetArray[i] !== "*"
-    ) {
-      result[i] = "semi";
-    }
-  }
 
-  return result;
-}
-function Game() {
+function Game({ guessedLetters, setGuessedLetters }) {
   const [target, setTarget] = useState();
-
   const [errorMessage, setErrorMessage] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [guesses, setGuesses] = useState([]);
   const [guessText, setGuessText] = useState("");
   const [won, setWon] = useState(false);
+
+  function evaluateGuess(guess, target) {
+    let targetArray = target.split("");
+    let result = {};
+    const newLetters = {
+      perfect: [...guessedLetters.perfect],
+      semi: [...guessedLetters.semi],
+      guessed: [...guessedLetters.guessed],
+    };
+    for (let i = 0; i < targetArray.length; i++) {
+      if (targetArray[i] === guess[i]) {
+        result[i] = "perfect";
+        newLetters.perfect.push(guess[i]);
+        targetArray[i] = "*";
+      } else if (
+        !newLetters.perfect.includes(guess[i]) &&
+        !newLetters.semi.includes(guess[i])
+      ) {
+        newLetters.guessed.push(guess[i]);
+
+        result[i] = "wrong";
+      }
+    }
+    for (let i = 0; i < targetArray.length; i++) {
+      if (
+        targetArray.includes(guess[i]) &&
+        targetArray[i] !== guess[i] &&
+        targetArray[i] !== "*"
+      ) {
+        result[i] = "semi";
+        newLetters.semi.push(targetArray[i]);
+      }
+    }
+    setGuessedLetters(newLetters);
+
+    return result;
+  }
+
   useEffect(() => {
     let randomIndex = Math.round(Math.random() * fiveLetters.length);
     setTarget(fiveLetters[randomIndex].toUpperCase());
@@ -95,6 +113,7 @@ function Game() {
   const handleReveal = () => {
     setErrorMessage(`Your word was ${target.toUpperCase()}`);
   };
+
   return (
     <div id="main">
       <div id="board">
