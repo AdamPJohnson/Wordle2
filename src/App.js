@@ -24,7 +24,7 @@ function App() {
           size="sm"
           id="infoButton"
         >
-          Info
+          Rules
         </Button>
       </header>
       <Game />

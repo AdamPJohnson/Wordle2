@@ -62,6 +62,7 @@ function Game() {
     const newGuesses = [...guesses, newGuess];
     setGuesses(newGuesses);
     setErrorMessage("");
+    setGuessText("");
   };
 
   const handleReset = () => {
