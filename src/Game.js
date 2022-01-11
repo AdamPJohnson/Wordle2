@@ -35,14 +35,17 @@ function Game() {
   const [gameOver, setGameOver] = useState(false);
   const [guesses, setGuesses] = useState([]);
   const [guessText, setGuessText] = useState("");
-
+  const [won, setWon] = useState(false);
   useEffect(() => {
     let randomIndex = Math.round(Math.random() * fiveLetters.length);
     setTarget(fiveLetters[randomIndex]);
   }, [setTarget]);
+
   useEffect(() => {
-    if (gameOver) setErrorMessage('Game Over! Press "Reset" to start again!');
-  }, [gameOver]);
+    if (won) setErrorMessage("You Won!");
+    else if (gameOver)
+      setErrorMessage('Game Over! Press "Reset" to start again!');
+  }, [gameOver, won]);
   useEffect(() => {
     if (guesses.length === 6) setGameOver(true);
   }, [guesses]);
@@ -57,6 +60,10 @@ function Game() {
     if (guessText.length !== 5)
       return setErrorMessage("Guesses must be 5 letters");
     if (gameOver) return setErrorMessage('Press "Reset" to start again!');
+    if (guessText.toLowerCase() === target.toLowerCase()) {
+      setWon(true);
+      setGameOver(true);
+    }
     const evaluation = evaluateGuess(guessText.toLowerCase(), target);
     const newGuess = { guessWord: guessText.toUpperCase(), evaluation };
     const newGuesses = [...guesses, newGuess];
@@ -72,6 +79,8 @@ function Game() {
 
     setErrorMessage("");
     setGameOver(false);
+    setWon(false);
+    setGuessText("");
   };
 
   const handleOnKeyDown = (e) => {
