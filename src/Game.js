@@ -9,7 +9,6 @@ function evaluateGuess(guess, target) {
   let targetArray = target.split("");
   let result = {};
   for (let i = 0; i < targetArray.length; i++) {
-    console.log({ targetArray, guess });
     if (targetArray[i] === guess[i]) {
       result[i] = "perfect";
       targetArray[i] = "*";
@@ -21,7 +20,6 @@ function evaluateGuess(guess, target) {
       targetArray[i] !== guess[i] &&
       targetArray[i] !== "*"
     ) {
-      console.log(guess[i]);
       result[i] = "semi";
     }
   }
@@ -38,7 +36,7 @@ function Game() {
   const [won, setWon] = useState(false);
   useEffect(() => {
     let randomIndex = Math.round(Math.random() * fiveLetters.length);
-    setTarget(fiveLetters[randomIndex]);
+    setTarget(fiveLetters[randomIndex].toUpperCase());
   }, [setTarget]);
 
   useEffect(() => {
@@ -53,18 +51,22 @@ function Game() {
     setGuessText(e.target.value);
   };
   const guessList = guesses.map((guess) => {
-    return <GuessListItem guess={guess} />;
+    const winner = guess.guessWord === target;
+    return <GuessListItem guess={guess} winner={winner} />;
   });
 
   const handleSubmit = () => {
+    // if (!list.includes(guessText.toLowerCase()))
+    //   return setErrorMessage("Must be a real word!");  ////once list is better
     if (guessText.length !== 5)
       return setErrorMessage("Guesses must be 5 letters");
     if (gameOver) return setErrorMessage('Press "Reset" to start again!');
-    if (guessText.toLowerCase() === target.toLowerCase()) {
+    if (guessText.toUpperCase() === target) {
       setWon(true);
       setGameOver(true);
     }
-    const evaluation = evaluateGuess(guessText.toLowerCase(), target);
+
+    const evaluation = evaluateGuess(guessText.toUpperCase(), target);
     const newGuess = { guessWord: guessText.toUpperCase(), evaluation };
     const newGuesses = [...guesses, newGuess];
     setGuesses(newGuesses);
@@ -75,7 +77,7 @@ function Game() {
   const handleReset = () => {
     setGuesses([]);
     let randomIndex = Math.round(Math.random() * fiveLetters.length);
-    setTarget(fiveLetters[randomIndex].toLowerCase());
+    setTarget(fiveLetters[randomIndex].toUpperCase());
 
     setErrorMessage("");
     setGameOver(false);
