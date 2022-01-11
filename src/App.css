@@ -1,7 +1,10 @@
 @media screen and (min-width: 600px) {
   #board {
-    height: 75%;
+    height: 80%;
     width: 40%;
+  }
+  #guesses {
+    height: 75%;
   }
   #main {
     justify-content: center;
@@ -16,7 +19,7 @@
 }
 @media screen and (max-width: 600px) {
   #board {
-    height: 80%;
+    height: 85%;
     width: 80%;
   }
   #main {
@@ -24,6 +27,9 @@
   }
   .guessListItem {
     width: 80%;
+  }
+  #guesses {
+    height: 70%;
   }
 }
 
@@ -33,13 +39,25 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 10vh;
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 0.1em;
+  position: relative;
+}
+
+#infoButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2%;
+}
+.App-header > * {
+  margin: 0px;
 }
 
 #title {
@@ -69,7 +87,6 @@
 }
 
 #guesses {
-  height: 75%;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -118,4 +135,22 @@
   color: red;
   font-size: 0.8em;
   margin-bottom: 0.5em;
+}
+
+#modalContents {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+#closeModalButton {
+  width: auto;
+  position: absolute;
+  top: 3%;
+  right: 5%;
 }
