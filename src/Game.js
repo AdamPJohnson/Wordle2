@@ -57,8 +57,8 @@ function Game() {
     if (guessText.length !== 5)
       return setErrorMessage("Guesses must be 5 letters");
     if (gameOver) return setErrorMessage('Press "Reset" to start again!');
-    const evaluation = evaluateGuess(guessText, target);
-    const newGuess = { guessWord: guessText, evaluation };
+    const evaluation = evaluateGuess(guessText.toLowerCase(), target);
+    const newGuess = { guessWord: guessText.toUpperCase(), evaluation };
     const newGuesses = [...guesses, newGuess];
     setGuesses(newGuesses);
     setErrorMessage("");
