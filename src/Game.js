@@ -82,7 +82,10 @@ function Game() {
       <div id="board">
         <div id="guesses">{guessList}</div>
         <div id="controls">
-          <label htmlFor="input">Guess:</label> <br />
+          <label id="inputLabel" htmlFor="input">
+            Guess:
+          </label>{" "}
+          <br />
           <input
             type="text"
             id="input"

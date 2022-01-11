@@ -22,6 +22,9 @@ function ModalContents({ setModalIsOpen }) {
         Letters that are in the secret word but in the wrong position will be
         marked as <span style={{ color: "orange" }}>orange</span>.
       </p>
+      <p>
+        Letters that are not in the secret word appear in <strong>black</strong>
+      </p>
       <p>Press "Reveal" to find out the word.</p>
       <p>Press "Reset" to start again!</p>
     </div>

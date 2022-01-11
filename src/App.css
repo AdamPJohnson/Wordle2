@@ -154,3 +154,7 @@
   top: 3%;
   right: 5%;
 }
+
+#inputLabel {
+  font-size: 0.8em;
+}
