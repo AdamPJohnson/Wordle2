@@ -3,7 +3,7 @@ import React from "react";
 function GuessListItem({ guess }) {
   return (
     <div className="guessListItem">
-      <p>
+      <p className="guessListItemText">
         <span className={`${guess.evaluation[0]}`}>{guess.guessWord[0]} </span>
         <span className={`${guess.evaluation[1]}`}>{guess.guessWord[1]} </span>
         <span className={`${guess.evaluation[2]}`}>{guess.guessWord[2]} </span>
