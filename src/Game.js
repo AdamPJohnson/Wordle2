@@ -74,6 +74,13 @@ function Game() {
     setGameOver(false);
   };
 
+  const handleOnKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   const handleReveal = () => {
     setErrorMessage(`Your word was "${target}"`);
   };
@@ -92,6 +99,7 @@ function Game() {
             name="input"
             onChange={handleChange}
             value={guessText}
+            onKeyDown={handleOnKeyDown}
           />
           <br />
           <div id="errorMessage">{errorMessage}</div>
