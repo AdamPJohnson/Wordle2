@@ -101,6 +101,11 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setGameOver(false);
     setWon(false);
     setGuessText("");
+    setGuessedLetters({
+      perfect: [],
+      semi: [],
+      guessed: [],
+    });
   };
 
   const handleOnKeyDown = (e) => {
