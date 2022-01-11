@@ -91,7 +91,7 @@ function Game() {
   };
 
   const handleReveal = () => {
-    setErrorMessage(`Your word was "${target}"`);
+    setErrorMessage(`Your word was ${target.toUpperCase()}`);
   };
   return (
     <div id="main">

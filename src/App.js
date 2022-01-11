@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h2 id="title">Wordle 2</h2>
+        <h2 id="title">WORDLE 2</h2>
         <p id="authors">by Sean and Adam</p>
         <Button
           onClick={() => setModalIsOpen(true)}

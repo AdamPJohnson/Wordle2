@@ -38,14 +38,15 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  font-family: "Lora", serif;
+  background-color: rgb(25, 10, 54);
   min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: whitesmoke;
   padding: 0.1em;
   position: relative;
 }
