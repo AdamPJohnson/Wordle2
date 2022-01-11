@@ -19,7 +19,7 @@
 }
 @media screen and (max-width: 600px) {
   #board {
-    height: 85%;
+    height: 90%;
     width: 80%;
   }
   #main {
@@ -76,7 +76,7 @@
 }
 
 #board {
-  margin-top: 2em;
+  margin-top: 1em;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   display: flex;
