@@ -47,7 +47,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
         newLetters.semi.push(guess[i]);
       }
     }
-    console.log({ newLetters });
+
     setGuessedLetters(newLetters);
 
     return result;
@@ -55,7 +55,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
 
   useEffect(() => {
     let randomIndex = Math.round(Math.random() * fiveLetters.length);
-    setTarget(randomIndex);
+    setTarget(fiveLetters[randomIndex]);
   }, [setTarget]);
 
   useEffect(() => {
