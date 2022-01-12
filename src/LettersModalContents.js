@@ -2,7 +2,7 @@ import React from "react";
 import Tile from "./Tile";
 
 function LettersModalContents({ guessedLetters }) {
-  console.log({ guessedLetters });
+  console.log(guessedLetters);
   const lettersList = allLetters.map((letter) => {
     let className;
     if (guessedLetters.perfect.includes(letter)) className = "perfect";
