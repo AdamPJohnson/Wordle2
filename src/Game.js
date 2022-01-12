@@ -55,7 +55,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
 
   useEffect(() => {
     let randomIndex = Math.round(Math.random() * fiveLetters.length);
-    setTarget(fiveLetters[randomIndex]);
+    setTarget(fiveLetters[randomIndex].toUpperCase());
   }, [setTarget]);
 
   useEffect(() => {
