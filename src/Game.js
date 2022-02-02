@@ -75,8 +75,8 @@ function Game({ guessedLetters, setGuessedLetters }) {
   });
 
   const handleSubmit = () => {
-    // if (!list.includes(guessText.toLowerCase()))
-    //   return setErrorMessage("Must be a real word!");  ////once list is better
+    if (!list.includes(guessText.toUpperCase()))
+      return setErrorMessage("Must be a real word!"); ////once list is better
     if (guessText.length !== 5)
       return setErrorMessage("Guesses must be 5 letters");
     if (gameOver) return setErrorMessage('Press "Reset" to start again!');
