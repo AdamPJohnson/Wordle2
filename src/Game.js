@@ -91,7 +91,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setGuesses(newGuesses);
     setErrorMessage("");
     setGuessText("");
-    ref.current.focus();
   };
 
   const handleReset = () => {
