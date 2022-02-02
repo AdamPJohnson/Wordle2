@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Board from "./Board";
 
 import Button from "react-bootstrap/Button";
@@ -14,7 +14,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
   const [guesses, setGuesses] = useState([]);
   const [guessText, setGuessText] = useState("");
   const [won, setWon] = useState(false);
-
+  const ref = useRef();
   function evaluateGuess(guess, target) {
     let targetArray = target.split("");
     let result = {};
@@ -67,7 +67,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
     if (guesses.length === 6) setGameOver(true);
   }, [guesses]);
   const handleChange = (e) => {
-    setGuessText(e.target.value);
+    setGuessText(e.target.value.trim());
   };
   const guessList = guesses.map((guess) => {
     const winner = guess.guessWord === target;
@@ -91,6 +91,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setGuesses(newGuesses);
     setErrorMessage("");
     setGuessText("");
+    ref.current.focus();
   };
 
   const handleReset = () => {
@@ -136,6 +137,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
             onChange={handleChange}
             value={guessText}
             onKeyDown={handleOnKeyDown}
+            ref={ref}
           />
           <br />
           <div id="errorMessage">{errorMessage}</div>
