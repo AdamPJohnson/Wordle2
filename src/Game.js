@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import Board from "./Board";
-
+import { Switch } from "@mui/material";
 import Button from "react-bootstrap/Button";
 import GuessListItem from "./GuessListItem";
-import list from "./listOfWords";
-
+import list from "./listOfWordsHard";
+import easyList from "./listOfWordsEasy";
 const fiveLetters = list.filter((word) => word.length === 5);
+
+const fiveLettersEasy = easyList.filter((word) => word.length === 5);
 
 function Game({ guessedLetters, setGuessedLetters }) {
   const [target, setTarget] = useState();
@@ -14,7 +16,9 @@ function Game({ guessedLetters, setGuessedLetters }) {
   const [guesses, setGuesses] = useState([]);
   const [guessText, setGuessText] = useState("");
   const [won, setWon] = useState(false);
+  const [easyMode, setEasyMode] = useState(false);
   const ref = useRef();
+
   function evaluateGuess(guess, target) {
     let targetArray = target.split("");
     let result = {};
@@ -53,27 +57,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
     return result;
   }
 
-  useEffect(() => {
-    let randomIndex = Math.round(Math.random() * fiveLetters.length);
-    setTarget(fiveLetters[randomIndex].toUpperCase());
-  }, [setTarget]);
-
-  useEffect(() => {
-    if (won) setErrorMessage("You Won!");
-    else if (gameOver)
-      setErrorMessage('Game Over! Press "Reset" to start again!');
-  }, [gameOver, won]);
-  useEffect(() => {
-    if (guesses.length === 6) setGameOver(true);
-  }, [guesses]);
-  const handleChange = (e) => {
-    setGuessText(e.target.value.trim());
-  };
-  const guessList = guesses.map((guess) => {
-    const winner = guess.guessWord === target;
-    return <GuessListItem guess={guess} winner={winner} />;
-  });
-
   const handleSubmit = () => {
     if (!list.includes(guessText.toUpperCase()))
       return setErrorMessage("Must be a real word!"); ////once list is better
@@ -93,10 +76,17 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setGuessText("");
   };
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setGuesses([]);
-    let randomIndex = Math.round(Math.random() * fiveLetters.length);
-    setTarget(fiveLetters[randomIndex].toUpperCase());
+    if (easyMode) {
+      console.log("easy");
+      let randomIndex = Math.round(Math.random() * fiveLettersEasy.length);
+      setTarget(fiveLettersEasy[randomIndex].toUpperCase());
+    } else {
+      console.log("hard");
+      let randomIndex = Math.round(Math.random() * fiveLetters.length);
+      setTarget(fiveLetters[randomIndex].toUpperCase());
+    }
 
     setErrorMessage("");
     setGameOver(false);
@@ -107,8 +97,11 @@ function Game({ guessedLetters, setGuessedLetters }) {
       semi: [],
       guessed: [],
     });
-  };
+  }, [easyMode, setGuessedLetters]);
 
+  const handleToggle = () => {
+    setEasyMode(!easyMode);
+  };
   const handleOnKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -120,6 +113,32 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setErrorMessage(`Your word was ${target.toUpperCase()}`);
   };
 
+  useEffect(() => {
+    let randomIndex = Math.round(Math.random() * fiveLetters.length);
+    setTarget(fiveLetters[randomIndex].toUpperCase());
+  }, [setTarget]);
+
+  useEffect(() => {
+    handleReset();
+  }, [easyMode, handleReset]);
+
+  useEffect(() => {
+    if (won) setErrorMessage("You Won!");
+    else if (gameOver)
+      setErrorMessage('Game Over! Press "Reset" to start again!');
+  }, [gameOver, won]);
+
+  useEffect(() => {
+    if (guesses.length === 6) setGameOver(true);
+  }, [guesses]);
+
+  const handleChange = (e) => {
+    setGuessText(e.target.value.trim());
+  };
+  const guessList = guesses.map((guess) => {
+    const winner = guess.guessWord === target;
+    return <GuessListItem guess={guess} winner={winner} />;
+  });
   return (
     <div id="main">
       <div id="board">
@@ -160,6 +179,9 @@ function Game({ guessedLetters, setGuessedLetters }) {
           >
             Reveal
           </Button>
+          <br />
+          <Switch checked={easyMode} onChange={handleToggle} />
+          <span>easy mode</span>
         </div>
       </div>
     </div>
