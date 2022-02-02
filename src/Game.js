@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button";
 import GuessListItem from "./GuessListItem";
 import list from "./listOfWordsHard";
 import easyList from "./listOfWordsEasy";
+import InputTiles from "./InputTiles";
 const fiveLetters = list.filter((word) => word.length === 5);
 
 const fiveLettersEasy = easyList.filter((word) => word.length === 5);
@@ -17,8 +18,8 @@ function Game({ guessedLetters, setGuessedLetters }) {
   const [guessText, setGuessText] = useState("");
   const [won, setWon] = useState(false);
   const [easyMode, setEasyMode] = useState(false);
-  const ref = useRef();
-
+  const [refIndex, setRefIndex] = useState(0);
+  const [resetToggle, setResetToggle] = useState(false);
   function evaluateGuess(guess, target) {
     let targetArray = target.split("");
     let result = {};
@@ -51,13 +52,12 @@ function Game({ guessedLetters, setGuessedLetters }) {
         newLetters.semi.push(guess[i]);
       }
     }
-
     setGuessedLetters(newLetters);
-
     return result;
   }
 
   const handleSubmit = () => {
+    console.log(guessText);
     if (!list.includes(guessText.toUpperCase()))
       return setErrorMessage("Must be a real word!"); ////once list is better
     if (guessText.length !== 5)
@@ -74,16 +74,16 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setGuesses(newGuesses);
     setErrorMessage("");
     setGuessText("");
+    setResetToggle(!resetToggle);
+    setRefIndex(0);
   };
 
   const handleReset = useCallback(() => {
     setGuesses([]);
     if (easyMode) {
-      console.log("easy");
       let randomIndex = Math.round(Math.random() * fiveLettersEasy.length);
       setTarget(fiveLettersEasy[randomIndex].toUpperCase());
     } else {
-      console.log("hard");
       let randomIndex = Math.round(Math.random() * fiveLetters.length);
       setTarget(fiveLetters[randomIndex].toUpperCase());
     }
@@ -132,31 +132,45 @@ function Game({ guessedLetters, setGuessedLetters }) {
     if (guesses.length === 6) setGameOver(true);
   }, [guesses]);
 
-  const handleChange = (e) => {
-    setGuessText(e.target.value.trim());
-  };
+  // const handleChange = (e) => {
+  //   setGuessText(e.target.value.trim());
+  // };
   const guessList = guesses.map((guess) => {
     const winner = guess.guessWord === target;
-    return <GuessListItem guess={guess} winner={winner} />;
+    return (
+      <GuessListItem guess={guess} winner={winner} key={guess.guessWord} />
+    );
   });
+
   return (
     <div id="main">
       <div id="board">
-        <div id="guesses">{guessList}</div>
+        <div id="guesses">
+          {guessList}
+          {!gameOver && (
+            <InputTiles
+              setGuessText={setGuessText}
+              guessText={guessText}
+              refIndex={refIndex}
+              setRefIndex={setRefIndex}
+              handleOnKeyDown={handleOnKeyDown}
+              resetToggle={resetToggle}
+            />
+          )}
+        </div>
         <div id="controls">
-          <label id="inputLabel" htmlFor="input">
-            Guess:
-          </label>{" "}
-          <br />
-          <input
+          {/* <label id="inputLabel" htmlFor="input"> */}
+          {/* Guess: */}
+          {/* </label>{" "} */}
+          {/* <br /> */}
+          {/* <input
             type="text"
             id="input"
             name="input"
             onChange={handleChange}
             value={guessText}
             onKeyDown={handleOnKeyDown}
-            ref={ref}
-          />
+          /> */}
           <br />
           <div id="errorMessage">{errorMessage}</div>
           <Button variant="outline-dark" id="submit" onClick={handleSubmit}>
