@@ -27,7 +27,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h2 id="title">WORDLE 2</h2>
-        <p id="authors">by Sean and Adam</p>
+
         <Button
           onClick={() => setLettersModalIsOpen(true)}
           variant="outline-light"

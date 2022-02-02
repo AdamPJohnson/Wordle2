@@ -1,7 +1,8 @@
 @media screen and (min-width: 600px) {
   #board {
-    height: 80%;
+    height: 100%;
     width: 40%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
   }
   #guesses {
     height: 75%;
@@ -23,14 +24,14 @@
 }
 @media screen and (max-width: 600px) {
   #board {
-    height: 90%;
-    width: 80%;
+    height: 100%;
+    width: 90%;
   }
   #main {
     justify-content: baseline;
   }
   .guessListItem {
-    width: 80%;
+    width: 90%;
   }
   #guesses {
     height: 70%;
@@ -76,7 +77,7 @@
 }
 
 #title {
-  margin-bottom: 0;
+  margin: 0.5em;
 }
 #authors {
   font-size: 0.5em;
@@ -92,7 +93,7 @@
 
 #board {
   margin-top: 1em;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -121,7 +122,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  height: 12%;
+  height: 20%;
 
   margin: 0.5em;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
@@ -190,8 +191,8 @@
 }
 
 .tile {
-  width: 2em;
-  height: 2em;
+  width: 3em;
+  height: 3em;
   border: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
