@@ -20,6 +20,8 @@ function Game({ guessedLetters, setGuessedLetters }) {
   const [easyMode, setEasyMode] = useState(false);
   const [refIndex, setRefIndex] = useState(0);
   const [resetToggle, setResetToggle] = useState(false);
+  const revealRef = useRef();
+
   function evaluateGuess(guess, target) {
     let targetArray = target.split("");
     let result = {};
@@ -67,7 +69,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
       setWon(true);
       setGameOver(true);
     }
-
     const evaluation = evaluateGuess(guessText.toUpperCase(), target);
     const newGuess = { guessWord: guessText.toUpperCase(), evaluation };
     const newGuesses = [...guesses, newGuess];
@@ -87,7 +88,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
       let randomIndex = Math.round(Math.random() * fiveLetters.length);
       setTarget(fiveLetters[randomIndex].toUpperCase());
     }
-
     setErrorMessage("");
     setGameOver(false);
     setWon(false);
@@ -102,6 +102,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
   const handleToggle = () => {
     setEasyMode(!easyMode);
   };
+
   const handleOnKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -111,6 +112,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
 
   const handleReveal = () => {
     setErrorMessage(`Your word was ${target.toUpperCase()}`);
+    revealRef.current.focus();
   };
 
   useEffect(() => {
@@ -132,9 +134,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
     if (guesses.length === 6) setGameOver(true);
   }, [guesses]);
 
-  // const handleChange = (e) => {
-  //   setGuessText(e.target.value.trim());
-  // };
   const guessList = guesses.map((guess) => {
     const winner = guess.guessWord === target;
     return (
@@ -159,19 +158,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
           )}
         </div>
         <div id="controls">
-          {/* <label id="inputLabel" htmlFor="input"> */}
-          {/* Guess: */}
-          {/* </label>{" "} */}
-          {/* <br /> */}
-          {/* <input
-            type="text"
-            id="input"
-            name="input"
-            onChange={handleChange}
-            value={guessText}
-            onKeyDown={handleOnKeyDown}
-          /> */}
-          <br />
           <div id="errorMessage">{errorMessage}</div>
           <Button variant="outline-dark" id="submit" onClick={handleSubmit}>
             Submit
@@ -190,6 +176,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
             variant="outline-dark"
             id="reveal"
             onClick={handleReveal}
+            ref={revealRef}
           >
             Reveal
           </Button>

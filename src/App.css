@@ -112,8 +112,8 @@
   box-sizing: border-box;
 }
 #controls {
-  min-height: 25%;
-  max-height: 25%;
+  /* min-height: 25%; */
+  /* max-height: 25%; */
 }
 .guessListItem {
   box-sizing: content-box;
