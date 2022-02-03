@@ -15,7 +15,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [gameOver, setGameOver] = useState(false);
   const [guesses, setGuesses] = useState([]);
-  const [guessText, setGuessText] = useState("");
+  const [guessText, setGuessText] = useState("     ");
   const [won, setWon] = useState(false);
   const [easyMode, setEasyMode] = useState(false);
   const [refIndex, setRefIndex] = useState(0);
@@ -74,7 +74,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
     const newGuesses = [...guesses, newGuess];
     setGuesses(newGuesses);
     setErrorMessage("");
-    setGuessText("");
+    setGuessText("     ");
     setResetToggle(!resetToggle);
     setRefIndex(0);
   };
@@ -91,7 +91,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setErrorMessage("");
     setGameOver(false);
     setWon(false);
-    setGuessText("");
+    setGuessText("     ");
     setGuessedLetters({
       perfect: [],
       semi: [],

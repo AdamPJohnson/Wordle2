@@ -58108,5 +58108,8 @@ const list = [
   "ZOOS",
   "ZULU",
   "ZULUS",
+
+  "PENIS",
+  "BONER",
 ];
 export default list;

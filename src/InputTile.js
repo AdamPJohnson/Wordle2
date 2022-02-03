@@ -30,17 +30,27 @@ const InputTile = React.forwardRef(
       if (e.keyCode === 8) {
         if (refIndex > 0) setRefIndex(index - 1);
         if (char) {
-          setChar("");
-          setGuessText(guessText.slice(0, -1));
+          setChar(" ");
+          setGuessText(
+            guessText.slice(0, index) + " " + guessText.slice(index + 1)
+          );
         }
+        console.log(guessText);
       }
-      if (e.keyCode >= 65 && e.keyCode <= 90) {
+      console.log(index);
+      if (e.keyCode >= 65 && e.keyCode <= 90 && index <= 4) {
         setChar(e.key.toUpperCase());
         setRefIndex(index + 1);
-        if (!char) setGuessText(guessText + e.key);
-        else setGuessText(guessText.slice(0, -1) + e.key);
+        if (!char)
+          setGuessText(
+            guessText.slice(0, index) + e.key + guessText.slice(index + 1)
+          );
+        else
+          setGuessText(
+            guessText.slice(0, index) + e.key + guessText.slice(index + 1)
+          );
+        keyDownProp(e);
       }
-      keyDownProp(e);
     };
 
     return (
