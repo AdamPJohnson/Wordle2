@@ -104,6 +104,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
   };
 
   const handleOnKeyDown = (e) => {
+    console.log("hi");
     if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit();

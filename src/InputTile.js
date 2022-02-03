@@ -49,8 +49,8 @@ const InputTile = React.forwardRef(
           setGuessText(
             guessText.slice(0, index) + e.key + guessText.slice(index + 1)
           );
-        keyDownProp(e);
       }
+      keyDownProp(e);
     };
 
     return (
