@@ -59,10 +59,12 @@ function Game({ guessedLetters, setGuessedLetters }) {
   }
 
   const handleSubmit = () => {
-    if (!list.includes(guessText.toUpperCase()))
-      return setErrorMessage("Must be a real word!"); ////once list is better
-    if (guessText.length !== 5)
+    if (guessText.length !== 5 || guessText.includes(" ")) {
       return setErrorMessage("Guesses must be 5 letters");
+    }
+    if (!list.includes(guessText.toUpperCase()))
+      return setErrorMessage("Must be a real word!");
+
     if (gameOver) return setErrorMessage('Press "Reset" to start again!');
     if (guessText.toUpperCase() === target) {
       setWon(true);
@@ -158,7 +160,12 @@ function Game({ guessedLetters, setGuessedLetters }) {
         </div>
         <div id="controls">
           <div id="errorMessage">{errorMessage}</div>
-          <Button variant="outline-dark" id="submit" onClick={handleSubmit}>
+          <Button
+            data-testid="submitButton"
+            variant="outline-dark"
+            id="submit"
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
           <br />

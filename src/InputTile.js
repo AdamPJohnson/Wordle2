@@ -12,6 +12,7 @@ const InputTile = React.forwardRef(
       setGuessText,
       handleOnKeyDown: keyDownProp,
       resetToggle,
+      testID,
     },
     ref
   ) => {
@@ -21,11 +22,9 @@ const InputTile = React.forwardRef(
       setChar("");
     }, [resetToggle]);
 
-    useEffect(() => {
-      if (refIndex === index && ref.current) {
-        ref.current.focus();
-      }
-    }, [refIndex, index, ref]);
+    if (refIndex === index && ref.current) {
+      ref.current.focus();
+    }
 
     const onKeyDown = (e) => {
       ///backspace
@@ -64,6 +63,7 @@ const InputTile = React.forwardRef(
         value={char}
         style={{ fontWeight: "bold" }}
         onChange={() => {}}
+        data-testid={testID}
       />
     );
   }

@@ -26,6 +26,7 @@ function InputTiles({
         setGuessText={setGuessText}
         handleOnKeyDown={handleOnKeyDown}
         resetToggle={resetToggle}
+        testID={"input0"}
       />
       <InputTile
         ref={ref1}
@@ -36,6 +37,7 @@ function InputTiles({
         setGuessText={setGuessText}
         handleOnKeyDown={handleOnKeyDown}
         resetToggle={resetToggle}
+        testID={"input1"}
       />
       <InputTile
         ref={ref2}
@@ -46,6 +48,7 @@ function InputTiles({
         setGuessText={setGuessText}
         handleOnKeyDown={handleOnKeyDown}
         resetToggle={resetToggle}
+        testID={"input2"}
       />
       <InputTile
         ref={ref3}
@@ -56,6 +59,7 @@ function InputTiles({
         setGuessText={setGuessText}
         handleOnKeyDown={handleOnKeyDown}
         resetToggle={resetToggle}
+        testID={"input3"}
       />
       <InputTile
         ref={ref4}
@@ -66,6 +70,7 @@ function InputTiles({
         setGuessText={setGuessText}
         handleOnKeyDown={handleOnKeyDown}
         resetToggle={resetToggle}
+        testID={"input4"}
       />
     </div>
   );
