@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import Board from "./Board";
-import { Switch } from "@mui/material";
-import Button from "react-bootstrap/Button";
 import GuessListItem from "./GuessListItem";
 import list from "./listOfWordsHard";
 import easyList from "./listOfWordsEasy";
 import InputTiles from "./InputTiles";
+import Controls from "./Controls";
 const fiveLetters = list.filter((word) => word.length === 5);
 
 const fiveLettersEasy = easyList.filter((word) => word.length === 5);
@@ -147,6 +145,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
       <div id="board">
         <div id="guesses">
           {guessList}
+
           {!gameOver && (
             <InputTiles
               setGuessText={setGuessText}
@@ -158,39 +157,15 @@ function Game({ guessedLetters, setGuessedLetters }) {
             />
           )}
         </div>
-        <div id="controls">
-          <div id="errorMessage">{errorMessage}</div>
-          <Button
-            data-testid="submitButton"
-            variant="outline-dark"
-            id="submit"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-          <br />
-          <Button
-            size="sm"
-            variant="outline-dark"
-            id="reset"
-            onClick={handleReset}
-          >
-            Reset
-          </Button>
-          <Button
-            data-testid="revealButton"
-            size="sm"
-            variant="outline-dark"
-            id="reveal"
-            onClick={handleReveal}
-            ref={revealRef}
-          >
-            Reveal
-          </Button>
-          <br />
-          <Switch checked={easyMode} onChange={handleToggle} />
-          <span>easy mode</span>
-        </div>
+        <Controls
+          errorMessage={errorMessage}
+          handleSubmit={handleSubmit}
+          handleReset={handleReset}
+          handleReveal={handleReveal}
+          easyMode={easyMode}
+          handleToggle={handleToggle}
+          ref={revealRef}
+        />
       </div>
     </div>
   );
