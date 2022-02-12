@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 
 const InputTile = React.forwardRef(
   (
@@ -22,9 +22,11 @@ const InputTile = React.forwardRef(
       setChar("");
     }, [resetToggle]);
 
-    if (refIndex === index && ref.current) {
-      ref.current.focus();
-    }
+    useLayoutEffect(() => {
+      if (refIndex === index && ref.current) {
+        ref.current.focus();
+      }
+    });
 
     const onKeyDown = (e) => {
       ///backspace

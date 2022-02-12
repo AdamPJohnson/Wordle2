@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import InputTile from "./InputTile";
 
 function InputTiles({
@@ -15,6 +15,12 @@ function InputTiles({
   const ref3 = useRef();
   const ref4 = useRef();
 
+  // const refArray = [ref0, ref1, ref2, ref3, ref4];
+
+  // useLayoutEffect(() => {
+  //   console.log(refArray[refIndex].current);
+  //   refArray[refIndex].current.focus();
+  // }, [refIndex]);
   return (
     <div className="guessListItem">
       <InputTile

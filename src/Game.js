@@ -178,6 +178,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
             Reset
           </Button>
           <Button
+            data-testid="revealButton"
             size="sm"
             variant="outline-dark"
             id="reveal"

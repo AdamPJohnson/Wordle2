@@ -35,3 +35,11 @@ test("warns user about invalid word of length 5", async () => {
   const errorMessage = await screen.findByText("Must be a real word!");
   expect(errorMessage).toBeInTheDocument();
 });
+
+test("reveals word when reveal button is clicked", async () => {
+  render(<App />);
+  const revealButton = screen.getByTestId("revealButton");
+  fireEvent.click(revealButton);
+  const errorMessage = await screen.findByText(/Your word was/i);
+  expect(errorMessage).toBeInTheDocument();
+});
