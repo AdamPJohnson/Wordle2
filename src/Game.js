@@ -133,10 +133,10 @@ function Game({ guessedLetters, setGuessedLetters }) {
     if (guesses.length === 6) setGameOver(true);
   }, [guesses]);
 
-  const guessList = guesses.map((guess) => {
+  const guessList = guesses.map((guess, i) => {
     const winner = guess.guessWord === target;
     return (
-      <GuessListItem guess={guess} winner={winner} key={guess.guessWord} />
+      <GuessListItem guess={guess} winner={winner} key={guess.guessWord + i} />
     );
   });
 
