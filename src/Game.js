@@ -59,7 +59,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
   }
 
   const handleSubmit = () => {
-    console.log(guessText);
     if (!list.includes(guessText.toUpperCase()))
       return setErrorMessage("Must be a real word!"); ////once list is better
     if (guessText.length !== 5)
@@ -104,7 +103,6 @@ function Game({ guessedLetters, setGuessedLetters }) {
   };
 
   const handleOnKeyDown = (e) => {
-    console.log("hi");
     if (e.key === "Enter") {
       e.preventDefault();
       handleSubmit();

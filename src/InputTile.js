@@ -21,9 +21,11 @@ const InputTile = React.forwardRef(
       setChar("");
     }, [resetToggle]);
 
-    if (refIndex === index && ref.current) {
-      ref.current.focus();
-    }
+    useEffect(() => {
+      if (refIndex === index && ref.current) {
+        ref.current.focus();
+      }
+    }, [refIndex, index, ref]);
 
     const onKeyDown = (e) => {
       ///backspace
@@ -35,9 +37,8 @@ const InputTile = React.forwardRef(
             guessText.slice(0, index) + " " + guessText.slice(index + 1)
           );
         }
-        console.log(guessText);
       }
-      console.log(index);
+      ///valid alphabetical characters
       if (e.keyCode >= 65 && e.keyCode <= 90 && index <= 4) {
         setChar(e.key.toUpperCase());
         setRefIndex(index + 1);
@@ -62,6 +63,7 @@ const InputTile = React.forwardRef(
         className={`tile inputTile ${size}`}
         value={char}
         style={{ fontWeight: "bold" }}
+        onChange={() => {}}
       />
     );
   }

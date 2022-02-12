@@ -14,7 +14,7 @@ function InputTiles({
   const ref2 = useRef();
   const ref3 = useRef();
   const ref4 = useRef();
-  console.log(guessText);
+
   return (
     <div className="guessListItem">
       <InputTile
