@@ -26,7 +26,7 @@ const InputTile = React.forwardRef(
       if (refIndex === index && ref.current) {
         ref.current.focus();
       }
-    });
+    }, [index, ref, refIndex]);
 
     const onKeyDown = (e) => {
       ///backspace
