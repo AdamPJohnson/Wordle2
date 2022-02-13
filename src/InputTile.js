@@ -60,7 +60,7 @@ const InputTile = ({
       className={`tile inputTile ${size}`}
       value={char}
       style={{ fontWeight: "bold" }}
-      onChange={() => {}}
+      onChange={onKeyDown}
       data-testid={testID}
     />
   );
