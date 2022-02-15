@@ -18,13 +18,16 @@ const InputTile = ({
     setChar("");
   }, [resetToggle]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (refIndex === index && ref.current) {
       ref.current.focus();
     }
   }, [index, refIndex]);
 
   const onKeyDown = (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return; // ignore special keys
+    e.preventDefault(); // stop from entering letter twice
+
     ///backspace
     if (e.keyCode === 8) {
       if (refIndex > 0) setRefIndex(refIndex - 1);
