@@ -6,7 +6,7 @@ function InputTiles({
   setRefIndex,
   guessText,
   setGuessText,
-  handleOnKeyDown,
+  handleSubmit,
   resetToggle,
 }) {
   return (
@@ -17,7 +17,7 @@ function InputTiles({
         index={0}
         guessText={guessText}
         setGuessText={setGuessText}
-        handleOnKeyDown={handleOnKeyDown}
+        handleSubmit={handleSubmit}
         resetToggle={resetToggle}
         testID={"input0"}
       />
@@ -27,7 +27,7 @@ function InputTiles({
         index={1}
         guessText={guessText}
         setGuessText={setGuessText}
-        handleOnKeyDown={handleOnKeyDown}
+        handleSubmit={handleSubmit}
         resetToggle={resetToggle}
         testID={"input1"}
       />
@@ -37,7 +37,7 @@ function InputTiles({
         index={2}
         guessText={guessText}
         setGuessText={setGuessText}
-        handleOnKeyDown={handleOnKeyDown}
+        handleSubmit={handleSubmit}
         resetToggle={resetToggle}
         testID={"input2"}
       />
@@ -47,7 +47,7 @@ function InputTiles({
         index={3}
         guessText={guessText}
         setGuessText={setGuessText}
-        handleOnKeyDown={handleOnKeyDown}
+        handleSubmit={handleSubmit}
         resetToggle={resetToggle}
         testID={"input3"}
       />
@@ -57,7 +57,7 @@ function InputTiles({
         index={4}
         guessText={guessText}
         setGuessText={setGuessText}
-        handleOnKeyDown={handleOnKeyDown}
+        handleSubmit={handleSubmit}
         resetToggle={resetToggle}
         testID={"input4"}
       />

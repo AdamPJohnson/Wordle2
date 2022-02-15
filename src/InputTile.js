@@ -8,7 +8,7 @@ const InputTile = ({
   setRefIndex,
   guessText,
   setGuessText,
-  handleOnKeyDown: keyDownProp,
+  handleSubmit,
   resetToggle,
   testID,
 }) => {
@@ -22,12 +22,12 @@ const InputTile = ({
     if (refIndex === index && ref.current) {
       ref.current.focus();
     }
-  }, [index, ref, refIndex]);
+  }, [index, refIndex]);
 
   const onKeyDown = (e) => {
     ///backspace
     if (e.keyCode === 8) {
-      if (refIndex > 0) setRefIndex(index - 1);
+      if (refIndex > 0) setRefIndex(refIndex - 1);
       if (char) {
         setChar(" ");
         setGuessText(
@@ -38,7 +38,7 @@ const InputTile = ({
     ///valid alphabetical characters
     if (e.keyCode >= 65 && e.keyCode <= 90 && index <= 4) {
       setChar(e.key.toUpperCase());
-      setRefIndex(index + 1);
+      if (refIndex < 4) setRefIndex(refIndex + 1);
       if (!char)
         setGuessText(
           guessText.slice(0, index) + e.key + guessText.slice(index + 1)
@@ -48,7 +48,10 @@ const InputTile = ({
           guessText.slice(0, index) + e.key + guessText.slice(index + 1)
         );
     }
-    keyDownProp(e);
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
   };
 
   return (

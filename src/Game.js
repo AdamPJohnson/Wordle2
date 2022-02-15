@@ -102,16 +102,9 @@ function Game({ guessedLetters, setGuessedLetters }) {
     setEasyMode(!easyMode);
   };
 
-  const handleOnKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleSubmit();
-    }
-  };
-
   const handleReveal = () => {
     setErrorMessage(`Your word was ${target.toUpperCase()}`);
-    revealRef.current.focus();
+    // revealRef.current.focus();
   };
 
   useEffect(() => {
@@ -152,7 +145,7 @@ function Game({ guessedLetters, setGuessedLetters }) {
               guessText={guessText}
               refIndex={refIndex}
               setRefIndex={setRefIndex}
-              handleOnKeyDown={handleOnKeyDown}
+              handleSubmit={handleSubmit}
               resetToggle={resetToggle}
             />
           )}
